@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-modular-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arunkr-accubits/nodejs-modular-boilerplate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arunkr-accubits/nodejs-modular-boilerplate/issues"
+  },
+  "homepage": "https://github.com/arunkr-accubits/nodejs-modular-boilerplate#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.3.8",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.16"
+  }
+}
