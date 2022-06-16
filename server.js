@@ -1,15 +1,12 @@
-const mongoose = require('mongoose');
-const app = require('./app');
-const url ='mongodb://127.0.0.1:27017/author'
-mongoose.connect(url, {
-    useNewUrlParser: true
-})
-.then( () => {
-    console.log("Connected to MongoDB",url )
-})
-.catch(error => {
-    console.log(error)
-});
+const express = require('express');
+const authorRouter = require('./src/routes/authorRoutes');
+const app=express();
+const db = require('./src/app');
 
-const db= mongoose.connection
-module.export = db;
+app.use(express.json());
+app.use(express.urlencoded( { extended: true } ));
+
+app.use('/api',authorRouter);
+app.listen(3000, () => { 
+    console.log('Express Server is listening on port: 3000');
+});
