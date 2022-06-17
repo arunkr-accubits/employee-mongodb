@@ -3,9 +3,11 @@ const mongoose = require("mongoose");
 
 const app = express();
 
+//MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+//DATABASE CONNECTION
 mongoose.connect("mongodb://127.0.0.1:27017/author", {
   useNewUrlParser: true,
 });
@@ -18,5 +20,9 @@ db.on("error", (error) => {
   console.log(error);
 });
 
-//return app;
+const authorRouter = require("./routes/authorRoutes");
+
+app.use("/api", authorRouter);
+
+
 module.exports = app;
