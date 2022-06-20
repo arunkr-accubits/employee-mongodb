@@ -1,14 +1,18 @@
-const express = require("express");
-const mongoose = require("mongoose");
+const express = require("express"),
+app=express(),
+mongoose = require("mongoose"),
+//const mongoose = require("mongoose");
+userRoutes=require('./routes/userRoutes');
 
-const app = express();
+//const app = express();
+require("dotenv").config();
 
 //MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //DATABASE CONNECTION
-mongoose.connect("mongodb://127.0.0.1:27017/author", {
+mongoose.connect("mongodb://127.0.0.1:27017/us", {
   useNewUrlParser: true,
 });
 const db = mongoose.connection;
@@ -20,9 +24,5 @@ db.on("error", (error) => {
   console.log(error);
 });
 
-const authorRouter = require("./routes/authorRoutes");
-
-app.use("/api", authorRouter);
-
-
+app.use('/api',userRoutes);
 module.exports = app;
