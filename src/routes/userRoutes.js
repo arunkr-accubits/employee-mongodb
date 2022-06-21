@@ -1,40 +1,46 @@
-// const express = require("express");
-// const { router } = require("../app");
-// const verifyToken = require("../middlewares/authJWT");
+const express = require('express');
+const userDetails = require('../model/user');
+const verifyToken = require('../middlewares/authJWT');
+const { signup, signin } = require ('../controllers/auth.controller');
 
-//const { router } = require("../app");
-//const authorModel = require("../model/author");
-//const app = express();
+const router = express.Router();
 
-var express = require('express'),
-router = express.Router(),
-verifyToken = require('../middlewares/authJWT'),
-{
-    signup, 
-    signin
-} = require ('../controllers/auth.controller');
+router.post('/register', signup);
+router.post('/login', signin);
 
-router.post('/register', signup, function(req, res){});
-router.post('/login', signin, function(req, res){});
+router.get('/users', async(req, res)=>{
+    const user= await userDetails.find({});
+    try{
+        res.send(user);
+    } catch (error){
+        res.status(500).send(error);
+    }
+});
 
-router.get('/hiddencontent', verifyToken, function(req, res){
+
+router.get('/hiddencontent', verifyToken, async(req, res)=>{
+    try{
     if (!user) {
         res.status(403)
-        .send({
-            message: 'Invalid JWT token'
+        .send({ 
+            message: 'Invalid JWT token' 
         });
     }
-    if(req.user == 'admin'){
+    if(req.user == 'admin'){ 
         res.status(200)
-        .send({
-            message: 'Congratulations! but there is no hidden content'
+        .send({ 
+            message: 'Congratulations! but there is no hidden content' 
         });
+
     } else {
         res.status(403)
-        .send({
+        .send({ 
             message: 'Unauthorised access'
         });
     }
+} catch (error){
+    res.status(500).send(error);
+}
 });
 
 module.exports=router;

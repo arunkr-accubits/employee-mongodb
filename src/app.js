@@ -1,10 +1,8 @@
-const express = require("express"),
-app=express(),
-mongoose = require("mongoose"),
-//const mongoose = require("mongoose");
+const express = require("express");
+const app=express();
+const mongoose = require("mongoose");
 userRoutes=require('./routes/userRoutes');
 
-//const app = express();
 require("dotenv").config();
 
 //MIDDLEWARE
