@@ -1,7 +1,7 @@
 const express = require("express");
-const app=express();
+const app = express();
 const mongoose = require("mongoose");
-userRoutes=require('./routes/userRoutes');
+userRoutes = require("./routes/userRoutes");
 
 require("dotenv").config();
 
@@ -22,5 +22,5 @@ db.on("error", (error) => {
   console.log(error);
 });
 
-app.use('/api',userRoutes);
+app.use("/api", userRoutes);
 module.exports = app;
