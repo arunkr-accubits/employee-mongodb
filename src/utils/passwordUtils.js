@@ -1,6 +1,4 @@
-const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-//const User = require("../model/user");
 
 module.exports = {
   /**
@@ -8,17 +6,10 @@ module.exports = {
    * @param {String} password
    * @returns Password hash
    */
-  generateToken: (user) => {
-    return jwt.sign({ id: user._id }, process.env.API_SECRET, {
-      expiresIn: 86400,
-    });
-  },
-
   hashPassword: (password) => {
     if (!password) {
       return false;
     }
-
     //const salt = bcrypt.genSaltSync(config.BYCRYPT_SALT);
     const hashedPassword = bcrypt.hashSync(password, 8);
     return hashedPassword;

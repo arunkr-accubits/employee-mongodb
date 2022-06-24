@@ -4,8 +4,8 @@ const {
   hashPassword,
   comparePassword,
   generatePassword,
-  generateToken,
-} = require("../utils/utils");
+} = require("../utils/passwordUtils");
+const { generateToken } = require("../utils/tokenUtils");
 
 //SIGNUP
 exports.signup = async (req, res) => {
