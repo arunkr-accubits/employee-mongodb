@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
+
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-  fullName: {
+const employerSchema = new Schema({
+  employerName: {
     type: String,
-    required: [true, "fullname not provided"],
+    required: true,
   },
   email: {
     type: String,
@@ -19,20 +20,14 @@ const userSchema = new Schema({
       message: "{VALUE} is not a valid email!",
     },
   },
-  role: {
-    type: String,
-    enum: ["normal", "admin"],
-    required: [true, "Please specify user role"],
-  },
   password: {
     type: String,
     required: true,
   },
-  created: {
-    type: Date,
-    default: Date.now,
-  },
+  employees:[{
+    type:Schema.Types.ObjectId,
+    ref: 'Employee'
+  }],
 });
 
-module.exports = mongoose.model("User", userSchema);
-
+module.exports = mongoose.model("Employer", employerSchema);
