@@ -3,6 +3,8 @@ const app = express();
 const mongoose = require("mongoose");
 userRoutes = require("./routes/userRoutes");
 
+employerRoutes = require("./routes/employer");
+
 require("dotenv").config();
 
 //MIDDLEWARE
@@ -23,4 +25,6 @@ db.on("error", (error) => {
 });
 
 app.use("/api", userRoutes);
+
+app.use("/api", employerRoutes);
 module.exports = app;
